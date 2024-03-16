@@ -46,6 +46,14 @@ public class UserController {
         request.setAttribute("user", user);
         return "user/update-form";
     }
+    @PostMapping("/user/update")
+    public String update(UserRequest.UpdateDTO reqDTO){
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User newSessionUser = userRepository.updateById(sessionUser.getId(), reqDTO.getPassword(), reqDTO.getEmail());
+        session.setAttribute("sessionUser", newSessionUser);
+        return "redirect:/";
+    }
+
 
     @GetMapping("/logout")
     public String logout() {

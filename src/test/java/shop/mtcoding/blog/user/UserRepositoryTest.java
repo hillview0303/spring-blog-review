@@ -13,7 +13,17 @@ public class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
     private EntityManager em;
+
+    @Test
+    public void updateById_test() {
+        int id = 1;
+        String password = "12345";
+        String email = "sssar@nate.com";
+        userRepository.updateById(id, password, email);
+        em.flush();
+    }
 
     @Test
     public void findById_test() {
