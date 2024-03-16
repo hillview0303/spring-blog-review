@@ -1,5 +1,6 @@
 package shop.mtcoding.blog.user;
 
+import jakarta.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ public class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
+    private EntityManager em;
 
     @Test
     public void findByUsername_test() {

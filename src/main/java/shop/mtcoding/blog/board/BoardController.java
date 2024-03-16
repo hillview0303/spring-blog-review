@@ -28,23 +28,21 @@ public class BoardController {
     }
 
     @PostMapping("/board/{id}/update")
-    public String update(@PathVariable Integer id){
-        return "redirect:/board/"+id;
+    public String update(@PathVariable Integer id, BoardRequest.UpdateDTO reqDTO) {
+        boardRepository.updateById(id, reqDTO.getTitle(), reqDTO.getContent());
+        return "redirect:/board/" + id;
     }
 
     @GetMapping("/board/{id}/update-form")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request){
+        Board board = boardRepository.findById(id);
+        request.setAttribute("board", board);
         return "board/update-form";
     }
 
     @PostMapping("/board/{id}/delete")
     public String delete(@PathVariable Integer id){
         boardRepository.deleteById(id);
-        return "redirect:/";
-    }
-
-    @PostMapping("/board/save")
-    public String save(){
         return "redirect:/";
     }
 

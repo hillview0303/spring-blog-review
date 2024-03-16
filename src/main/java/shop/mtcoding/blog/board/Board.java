@@ -27,7 +27,7 @@ public class Board {
     private Timestamp createdAt;
 
     @Builder
-    public Board (Integer id, String title, String content, User user, Timestamp createdAt) {
+    public Board(Integer id, String title, String content, User user, Timestamp createdAt) {
         this.id = id;
         this.title = title;
         this.content = content;

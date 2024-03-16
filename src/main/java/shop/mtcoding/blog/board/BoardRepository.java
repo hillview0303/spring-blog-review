@@ -2,9 +2,9 @@ package shop.mtcoding.blog.board;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.blog.user.User;
 
 import java.util.List;
@@ -13,6 +13,13 @@ import java.util.List;
 @Repository
 public class BoardRepository {
     private final EntityManager em;
+
+    @Transactional
+    public void updateById(int id, String title, String content){
+        Board board = findById(id);
+        board.setTitle(title);
+        board.setContent(content);
+    }
 
     @Transactional
     public void deleteById(int id){
@@ -50,7 +57,7 @@ public class BoardRepository {
                 }
             }
         }
-        return boardList;
+        return boardList; // user가 채워져 있어야함.
     }
 
     public List<Board> findAllV2(){
@@ -83,6 +90,7 @@ public class BoardRepository {
     }
 
     public Board findById(int id){
+        // id, title, content, user_id(이질감), created_at
         Board board = em.find(Board.class, id);
         return board;
     }
