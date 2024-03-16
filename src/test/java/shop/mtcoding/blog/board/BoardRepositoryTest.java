@@ -15,6 +15,13 @@ public class BoardRepositoryTest {
     private BoardRepository boardRepository;
 
     @Test
+    public void deleteById_test(){
+        int id = 1;
+        boardRepository.deleteById(id);
+        System.out.println("deleteById_test : "+boardRepository.findAll().size());
+    }
+
+    @Test
     public void findAllV2_test(){
         List<Board> boardList = boardRepository.findAllV2();
         boardList.forEach(board -> {
