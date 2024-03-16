@@ -19,9 +19,10 @@ public class UserRepositoryTest {
     @Test
     public void updateById_test() {
         int id = 1;
+        String username = "ssar2";
         String password = "12345";
         String email = "sssar@nate.com";
-        userRepository.updateById(id, password, email);
+        userRepository.updateById(id, username, password, email);
         em.flush();
     }
 

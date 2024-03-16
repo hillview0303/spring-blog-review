@@ -18,7 +18,7 @@ public class UserController {
     @PostMapping("/join")
     public String join(UserRequest.JoinDTO reqDTO){
         userRepository.save(reqDTO.toEntity());
-        return "redirect:/login-form";
+        return "redirect:/";
     }
 
     @PostMapping("/login")
@@ -49,7 +49,7 @@ public class UserController {
     @PostMapping("/user/update")
     public String update(UserRequest.UpdateDTO reqDTO){
         User sessionUser = (User) session.getAttribute("sessionUser");
-        User newSessionUser = userRepository.updateById(sessionUser.getId(), reqDTO.getPassword(), reqDTO.getEmail());
+        User newSessionUser = userRepository.updateById(sessionUser.getId(), reqDTO.getUsername(), reqDTO.getPassword(), reqDTO.getEmail());
         session.setAttribute("sessionUser", newSessionUser);
         return "redirect:/";
     }

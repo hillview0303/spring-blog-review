@@ -13,8 +13,9 @@ public class UserRepository {
     private final EntityManager em;
 
     @Transactional
-    public User updateById(int id, String password, String email){
+    public User updateById(int id, String username, String password, String email){
         User user = findById(id);
+        user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
         return user;
