@@ -14,27 +14,29 @@ import java.util.List;
 @Controller
 public class BoardController {
 
+    private final BoardRepository boardRepository;
+
     @PostMapping("/board/{id}/update")
-    public String update(@PathVariable Integer id) {
-        return "redirect:/board/" + id;
+    public String update(@PathVariable Integer id){
+        return "redirect:/board/"+id;
     }
 
     @GetMapping("/board/{id}/update-form")
-    public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
+    public String updateForm(@PathVariable Integer id, HttpServletRequest request){
         return "board/update-form";
     }
 
     @PostMapping("/board/{id}/delete")
-    public String delete(@PathVariable Integer id) {
+    public String delete(@PathVariable Integer id){
         return "redirect:/";
     }
 
     @PostMapping("/board/save")
-    public String save() {
+    public String save(){
         return "redirect:/";
     }
 
-    @GetMapping("/")
+    @GetMapping("/" )
     public String index(HttpServletRequest request) {
         return "index";
     }
@@ -46,6 +48,8 @@ public class BoardController {
 
     @GetMapping("/board/{id}")
     public String detail(@PathVariable Integer id, HttpServletRequest request) {
+        Board board = boardRepository.findByIdJoinUser(id);
+        request.setAttribute("board", board);
         return "board/detail";
     }
 }

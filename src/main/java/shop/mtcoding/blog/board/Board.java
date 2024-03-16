@@ -20,10 +20,10 @@ public class Board {
     private String title;
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @CreationTimestamp // pc -> db (날짜주입)
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
