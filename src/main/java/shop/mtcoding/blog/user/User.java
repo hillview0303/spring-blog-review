@@ -21,7 +21,7 @@ public class User {
     private String password;
     private String email;
 
-    @CreationTimestamp // pc -> db (날짜주입)
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
