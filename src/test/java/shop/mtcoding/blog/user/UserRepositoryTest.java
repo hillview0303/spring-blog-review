@@ -16,6 +16,12 @@ public class UserRepositoryTest {
     private EntityManager em;
 
     @Test
+    public void findById_test() {
+        int id = 1;
+        userRepository.findById(id);
+    }
+
+    @Test
     public void findByUsername_test() {
 
         UserRequest.LoginDTO reqDTO = new UserRequest.LoginDTO();

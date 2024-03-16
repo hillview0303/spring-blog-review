@@ -1,5 +1,7 @@
 package shop.mtcoding.blog.user;
 
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -38,7 +40,10 @@ public class UserController {
     }
 
     @GetMapping("/user/update-form")
-    public String updateForm() {
+    public String updateForm(HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userRepository.findById(sessionUser.getId());
+        request.setAttribute("user", user);
         return "user/update-form";
     }
 
